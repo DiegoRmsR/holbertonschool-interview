@@ -1,6 +1,6 @@
 #!/usr/bin/python3
+
 """ Lockboxes  """
-from itertools import dropwhile
 
 
 def canUnlockAll(boxes):
@@ -12,6 +12,17 @@ def canUnlockAll(boxes):
     The first box boxes[0] is unlocked
     Return True if all boxes can be opened, else return False
     """
+    unlocked = [0]
+    for i in unlocked:
+        for j in boxes[i]:
+            if j < len(boxes):
+                if j in unlocked:
+                    pass
+                else:
+                    unlocked.append(j)
 
 
-    keys = {}
+    if len(unlocked) == len(boxes):
+        return True
+    else:
+        return False
