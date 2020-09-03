@@ -11,7 +11,7 @@ int is_palindrome(listint_t **head)
 	int length_all = length_linked(*head);
 	int length_half = (length_all / 2), step = 0;
 	listint_t *left = *head, *right = NULL;
-	size_t j = 0, i = 1;
+	size_t k = 0, j = 1;
 
 	if (!length_all)
 		return (1);
@@ -20,9 +20,9 @@ int is_palindrome(listint_t **head)
 	{
 		right = *head;
 
-		j = (length_all - step);
+		k = (length_all - step);
 		/* Get the node of the right */
-		for (i = 1; (j < i) && (right->next); ++j)
+		for (j = 1; (j < k) && (right->next); ++j)
 			right = right->next;
 
 		if (left->n != right->n)
