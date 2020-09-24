@@ -6,7 +6,9 @@ import unicodedata
 
 
 def validUTF8(data):
-    """method that determines if a given data set represents a valid UTF-8 encoding."""
+    """
+    method that determines if a given data set represents a valid UTF-8 encoding.
+    """
     for inte in data:
         try:
             unicodedata.name(chr(inte))
