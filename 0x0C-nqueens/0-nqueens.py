@@ -1,60 +1,71 @@
 #!/usr/bin/python3
-""" N queens algorithm with backtracking """
+
+"""
+N queens problem
+"""
+
 import sys
 
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print('Usage: nqueens N')
+        sys.exit(1)
 
-class NQueen:
-    """ Class for solving N Queen Problem """
+    try:
+        n_q = int(sys.argv[1])
+    except BaseException:
+        print('N must be a number')
+        sys.exit(1)
 
-    def __init__(self, n):
-        """ Init """
-        self.n = n
-        self.x = [0 for i in range(n + 1)]
-        self.res = []
+    if n_q < 4:
+        print('N must be at least 4')
+        sys.exit(1)
 
-    def place(self, k, i):
-        """ Checks if k Queen can be placed
-        """
-        for j in range(1, k):
-            if self.x[j] == i or \
-               abs(self.x[j] - i) == abs(j - k):
-                return 0
-        return 1
+    board = [[0 for col in range(n_q)] for row in range(n_q)]
 
-    def nQueen(self, k):
-        """ N QUEEN
-        """
-        for i in range(1, self.n + 1):
-            if self.place(k, i):
-                self.x[k] = i
-                if k == self.n:
-                    solution = []
-                    for i in range(1, self.n + 1):
-                        solution.append([i - 1, self.x[i] - 1])
-                    self.res.append(solution)
-                else:
-                    self.nQueen(k + 1)
-        return self.res
+    def main():
+        b = [[0 for j in range(n_q)] for i in range(n_q)]
+        recursive_func(b, 0)
+        return
 
+    def recursive_func(b, c):
+        if (c == n_q):
+            solution(b)
+            return True
+        ret = False
+        for i in range(n_q):
+            if (validate_pos(b, i, c)):
+                b[i][c] = 1
+                ret = recursive_func(b, c + 1) or ret
+                b[i][c] = 0
+        return ret
 
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
+    def validate_pos(b, r, c):
+        for i in range(c):
+            if (b[r][i]):
+                return False
+        i = r
+        j = c
+        while i >= 0 and j >= 0:
+            if(b[i][j]):
+                return False
+            i = i - 1
+            j = j - 1
+        i = r
+        j = c
+        while j >= 0 and i < n_q:
+            if(b[i][j]):
+                return False
+            i = i + 1
+            j = j - 1
+        return True
 
-N = sys.argv[1]
-
-try:
-    N = int(N)
-except ValueError:
-    print("N must be a number")
-    sys.exit(1)
-
-if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
-
-nqueen = NQueen(N)
-result = nqueen.nQueen(1)
-
-for i in result:
-    print(i)
+    def solution(b):
+        solve = []
+        for i in range(n_q):
+            for j in range(n_q):
+                if(b[i][j] == 1):
+                    solve.append([i, j])
+        print(solve)
+        solve.clear()
+    main()
