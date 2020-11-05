@@ -1,20 +1,21 @@
 #!/usr/bin/python3
-""" N queens algorithm with backtracking """
+""" N queens backtracking """
 import sys
 
 
 class NQueen:
-    """ Class for solving N Queen Problem """
+    """ Class Queens """
 
     def __init__(self, n):
-        """ init """
+        """ Constructor """
         self.n = n
         self.x = [0 for i in range(n + 1)]
         self.res = []
 
     def place(self, k, i):
-        """ Checks if k Queen can be placed
+        """ Check if a secure place
         """
+
         for j in range(1, k):
             if self.x[j] == i or \
                abs(self.x[j] - i) == abs(j - k):
@@ -22,7 +23,8 @@ class NQueen:
         return 1
 
     def nQueen(self, k):
-        """ N QUEEN """
+        """ Resolve the nqueen
+        """
         for i in range(1, self.n + 1):
             if self.place(k, i):
                 self.x[k] = i
