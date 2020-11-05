@@ -26,8 +26,7 @@ class NQueen:
         return 1
 
     def nQueen(self, k):
-        """ N QUEEN
-        """
+        """ N QUEEN """
         # i goes from column 1 to column n (1st column is 1st index)
         for i in range(1, self.n + 1):
             if self.place(k, i):
