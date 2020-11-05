@@ -7,7 +7,7 @@ class NQueen:
     """ Class for solving N Queen Problem """
 
     def __init__(self, n):
-        """ Init """
+        """ init """
         self.n = n
         self.x = [0 for i in range(n + 1)]
         self.res = []
@@ -34,6 +34,7 @@ class NQueen:
                 else:
                     self.nQueen(k + 1)
         return self.res
+
 
 if len(sys.argv) != 2:
     print("Usage: nqueens N")
